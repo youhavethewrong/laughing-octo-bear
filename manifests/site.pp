@@ -2,7 +2,6 @@
 # puppet node specification
 
 node default {
-    include common
     include sshd
 }
 
