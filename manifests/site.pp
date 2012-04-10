@@ -6,7 +6,8 @@ node default {
 }
 
 node /^www\d*\.*/ inherits default {
-    include apache
+    Package['apache'] { ensure => absent }
+    include nginx
 }
 
 node /^proxy\d*\./ inherits default {
