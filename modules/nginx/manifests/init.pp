@@ -9,7 +9,7 @@ class nginx {
 
     # for some hosts, we want to use a slimmer version of nginx
     if $memorysize_kb < 1024*1024 {
-        $which_pkg = 'nginx-lite'
+        $which_pkg = 'nginx-light'
     } else {
         $which_pkg = 'nginx-full'
     }
