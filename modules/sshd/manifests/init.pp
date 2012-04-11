@@ -21,6 +21,7 @@ class sshd {
 
     service { 'sshd':
         ensure    => running,
+        path      => '/etc/init.d/ssh',
         name      => $svc_name,
         hasstatus => true,
     }
