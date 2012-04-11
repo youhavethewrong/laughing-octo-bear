@@ -1,7 +1,7 @@
 # courtesy Martijn Grendelman on puppet-users mailing list
 require 'facter'
 
-Facter.add("memorysize_mb") do
+Facter.add("memorysize_kb") do
     confine :kernel => :Linux
 
     ram = 0
