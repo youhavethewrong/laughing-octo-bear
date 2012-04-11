@@ -2,6 +2,9 @@
 # sshd class
 
 class sshd {
+
+    Package['sshd'] ~> Service['sshd']
+
     $pkg_name = $operatingsystem ? {
         'Debian' => 'openssh-server',
         'Ubuntu' => 'openssh-server',
@@ -9,10 +12,11 @@ class sshd {
     }
 
     $svc_name = $operatingsystem ? {
-        'Debian' => 'sshd',
-        'Ubuntu' => 'sshd',
+        'Debian' => 'ssh',
+        'Ubuntu' => 'ssh',
         default  => fail("OS ${operatingsystem} not supported by ${module_name} module."),
     }
+
 
     package { 'sshd':
         ensure => latest,
@@ -21,7 +25,6 @@ class sshd {
 
     service { 'sshd':
         ensure    => running,
-        path      => '/etc/init.d/ssh',
         name      => $svc_name,
         hasstatus => true,
     }
