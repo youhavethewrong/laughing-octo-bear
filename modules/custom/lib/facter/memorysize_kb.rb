@@ -9,7 +9,9 @@ Facter.add("memorysize_mb") do
     # Steal linux's meminfo
     File.open( "/proc/meminfo" , 'r' ) do |f|
         f.grep( /^MemTotal:/ ) { |mem|
-            ram = mem.split( / +/ )[1].to_i / 1024
+            # originally, this reported MB.  I want KB.
+            #ram = mem.split( / +/ )[1].to_i / 1024
+            ram = mem.split( / +/ )[1].to_i
         }
     end
 
