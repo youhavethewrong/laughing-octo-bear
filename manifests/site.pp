@@ -12,3 +12,11 @@ node /^www\d*\.*/ inherits default {
 node /^proxy\d*\./ inherits default {
     include lighttpd
 }
+
+node /^dns\d*\./ inherits default {
+    include bind
+}
+
+node /^db\d*\./ inherits default {
+    include mysql
+}
