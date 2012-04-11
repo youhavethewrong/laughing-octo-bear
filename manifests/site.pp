@@ -6,7 +6,7 @@ node default {
 }
 
 node /^www\d*\.*/ inherits default {
-    Package['apache'] { ensure => absent }
+    Package['apache::apache'] { ensure => absent }
     include nginx
 }
 
