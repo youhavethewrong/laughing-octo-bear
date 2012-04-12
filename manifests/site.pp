@@ -20,3 +20,7 @@ node /^dns\d*\./ inherits default {
 node /^db\d*\./ inherits default {
     include mysql
 }
+
+node /^app\d*\./ inherits default {
+    include python
+}
