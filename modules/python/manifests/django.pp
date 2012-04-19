@@ -9,7 +9,7 @@ class python::django {
         default  => fail("OS ${operatingsystem} not supported by ${module_name} module."),
     }
 
-    package { 'python::pylons':
+    package { 'python::django':
         ensure => latest,
         name   => $pkg_name,
     }
