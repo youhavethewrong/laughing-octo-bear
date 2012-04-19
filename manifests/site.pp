@@ -23,5 +23,5 @@ node /^db\d*\./ inherits default {
 
 node /^app\d*\./ inherits default {
     include python
-    include python-django
+    include python::django
 }
