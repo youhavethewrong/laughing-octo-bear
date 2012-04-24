@@ -7,8 +7,8 @@ class cassandra ($release = '11x') {
     # $release is the cassandra release noted here:
     # http://wiki.apache.org/cassandra/DebianPackaging
 
-    # notify the service when the package is updated
-    Service['cassandra'] ~> Package['cassandra']
+    # file before package before service and notify down the chain
+    File['/etc/apt/sources.list.d/cassandra.list'] ~> Package['cassandra'] ~> Service['cassandra']
 
     # make sure sun jdk is installed
 
@@ -33,7 +33,8 @@ class cassandra ($release = '11x') {
 
     # ensure latest cassandra is installed
     package { 'cassandra':
-        ensure => latest,
+        ensure  => latest,
+        require => Class['java'],
     }
 
     # ensure cassandra is running

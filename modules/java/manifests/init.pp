@@ -4,6 +4,9 @@
 
 class java {
 
+    # manage the file before the package and notify the package
+    File['/etc/apt/sources.list.d/non-free.list'] ~> Package['sun-java6-jdk']
+
     # determine the right mirror to add for the OS
     $nf_mirror = $operatingsystem ? {
         'Debian' => 'deb http://ftp.uwsg.indiana.edu/linux/debian/ ${lsbdistcodename} non-free',
