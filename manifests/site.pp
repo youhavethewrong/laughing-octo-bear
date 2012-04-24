@@ -18,7 +18,8 @@ node /^dns\d*\./ inherits default {
 }
 
 node /^db\d*\./ inherits default {
-    include mysql
+    # java for cassandra
+    include java
 }
 
 node /^app\d*\./ inherits default {
