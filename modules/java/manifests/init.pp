@@ -9,7 +9,7 @@ class java {
 
     # determine the right mirror to add for the OS
     $nf_mirror = $operatingsystem ? {
-        'Debian' => 'deb http://ftp.uwsg.indiana.edu/linux/debian/ ${lsbdistcodename} non-free',
+        'Debian' => "deb http://ftp.uwsg.indiana.edu/linux/debian/ ${lsbdistcodename} non-free",
         default  => fail("OS ${operatingsystem} not supported by ${module_name} module."),
     }
 
