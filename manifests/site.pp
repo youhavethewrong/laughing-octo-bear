@@ -3,6 +3,7 @@
 
 node default {
     include sshd
+    include ntp
 }
 
 node /^www\d*\.*/ inherits default {
