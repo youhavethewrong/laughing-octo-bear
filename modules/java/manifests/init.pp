@@ -7,6 +7,8 @@ class java {
     # need the apt class so we can update apt's sources
     include apt
 
+    File['/etc/apt/sources.list/cassandra.list'] ~> Package['sun-java6-jdk']
+
     # determine the right mirror to add for the OS
     $nf_mirror = $operatingsystem ? {
         'Debian' => "deb http://ftp.uwsg.indiana.edu/linux/debian/ ${lsbdistcodename} non-free",

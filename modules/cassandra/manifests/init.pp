@@ -4,13 +4,13 @@
 
 class cassandra ($release = '11x') {
 
+    include apt
+
     # $release is the cassandra release noted here:
     # http://wiki.apache.org/cassandra/DebianPackaging
 
     # file before package before service and notify down the chain
     File['/etc/apt/sources.list.d/cassandra.list'] ~> Package['cassandra'] ~> Service['cassandra']
-
-    # make sure sun jdk is installed
 
     # make sure apache GPG keys are installed
 
@@ -29,6 +29,7 @@ class cassandra ($release = '11x') {
         mode    => 444,
         owner   => root,
         group   => root,
+        require => Exec['apt-get_update'],
     }
 
     # ensure latest cassandra is installed
