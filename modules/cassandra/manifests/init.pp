@@ -14,6 +14,10 @@ class cassandra ($release = '11x') {
     File['/etc/apt/sources.list.d/cassandra.list'] ~> Package['cassandra'] ~> Service['cassandra']
 
     # make sure apache GPG keys are installed
+    apt::key { 'apache-cassandra-key': 
+        ensure => present, 
+        name   => '4BD736A82B5C1B00',
+    }
 
     # make sure cassandra debian repo is installed
     $cass_mirror = $operatingsystem ? {
