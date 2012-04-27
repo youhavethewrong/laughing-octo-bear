@@ -2,10 +2,14 @@
 # operations for apt
 #------------------------------------------------------------------------------- 
 
-class apt-get {
+class apt {
+
+}
+
+class apt::apt-get inherits apt {
     
 }
 
-class apt-get::update {
+class apt::apt-get::update inherits apt::apt-get {
     exec { "/usr/bin/apt-get update":}
 }
