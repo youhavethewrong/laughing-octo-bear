@@ -28,5 +28,10 @@ class java {
     # ensure latest sun-java6-jdk
     package { 'sun-java6-jdk':
         ensure  => latest,
+        require => Exec['sun-java6-jdk-license-accept'],
     } 
+
+    exec { 'sun-java6-jdk-license-accept':
+        command => "echo 'sun-java6-jdk shared/accepted-sun-dlj-v1-1 boolean true'|/usr/bin/debconf-set-selections",
+    }
 }
