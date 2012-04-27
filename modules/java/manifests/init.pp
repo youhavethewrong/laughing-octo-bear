@@ -30,6 +30,6 @@ class java {
 
     exec { 'sun-java6-jdk-license-accept':
         command => "/bin/echo 'sun-java6-jdk shared/accepted-sun-dlj-v1-1 boolean true'|/usr/bin/debconf-set-selections",
-        unless  => "/usr/bin/debconf-get-selections|grep sun-java6-jdk|grep accepted-sun-dlj",
+        unless  => "/usr/bin/debconf-get-selections |grep sun-java6-jdk|grep accepted-sun-dlj",
     }
 }
