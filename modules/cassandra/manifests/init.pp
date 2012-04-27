@@ -5,6 +5,7 @@
 class cassandra ($release = '11x') {
 
     include apt
+    include java
 
     # $release is the cassandra release noted here:
     # http://wiki.apache.org/cassandra/DebianPackaging
