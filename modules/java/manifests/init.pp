@@ -5,7 +5,7 @@
 class java {
 
     # manage the file before the package and notify the package
-    File['/etc/apt/sources.list.d/non-free.list'] ~> Exec["/usr/bin/apt-get update"] ~> Package['sun-java6-jdk']
+    File['/etc/apt/sources.list.d/non-free.list'] ~> Package['sun-java6-jdk']
 
     # determine the right mirror to add for the OS
     $nf_mirror = $operatingsystem ? {
