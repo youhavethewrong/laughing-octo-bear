@@ -4,8 +4,11 @@
 
 class java {
 
+    # need the apt class so we can update apt's sources
+    include apt
+
     # manage the file before the package and notify the package
-    File['/etc/apt/sources.list.d/non-free.list'] ~> Package['sun-java6-jdk']
+    File['/etc/apt/sources.list.d/non-free.list'] ~> Exec['apt-get_update'] ~> Package['sun-java6-jdk']
 
     # determine the right mirror to add for the OS
     $nf_mirror = $operatingsystem ? {
@@ -20,7 +23,6 @@ class java {
         mode    => 444,
         owner   => root,
         group   => root,
-        require => Class["apt::apt-get::update"],
     }
 
     # ensure latest sun-java6-jdk
