@@ -7,7 +7,7 @@ class java {
     # need the apt class so we can update apt's sources
     include apt
 
-    File['/etc/apt/sources.list/cassandra.list'] ~> Package['sun-java6-jdk']
+    File['/etc/apt/sources.list/non-free.list'] ~> Package['sun-java6-jdk']
 
     # determine the right mirror to add for the OS
     $nf_mirror = $operatingsystem ? {
