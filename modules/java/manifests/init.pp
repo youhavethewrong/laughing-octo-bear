@@ -20,16 +20,16 @@ class java {
         mode    => 444,
         owner   => root,
         group   => root,
-        require => Exec['apt-get_update'],
+        require => Exec['apt-get_update','sun-java6-jdk-license-accept'],
     }
 
     # ensure latest sun-java6-jdk
     package { 'sun-java6-jdk':
         ensure  => latest,
-        require => Exec['sun-java6-jdk-license-accept'],
     } 
 
     exec { 'sun-java6-jdk-license-accept':
         command => "/bin/echo 'sun-java6-jdk shared/accepted-sun-dlj-v1-1 boolean true'|/usr/bin/debconf-set-selections",
+        unless  => "/usr/bin/debconf-get-selections|grep sun-java6-jdk|grep accepted-sun-dlj",
     }
 }
