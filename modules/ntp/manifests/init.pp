@@ -13,6 +13,7 @@ class ntp {
     $pkg_name = $operatingsystem ? {
         'Debian' => 'ntp',
         default  => fail("OS ${operatingsystem} not supported by ${module_name} module."),
+    }
 
     package { "ntp":
         ensure => installed,
