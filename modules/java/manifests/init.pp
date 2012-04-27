@@ -32,7 +32,6 @@ class java {
     } 
 
     exec { 'sun-java6-jdk-license-accept':
-        $cmd = "/bin/echo 'sun-java6-jdk shared/accepted-sun-dlj-v1-1 boolean true'|/usr/bin/debconf-set-selections",
-        command => $cmd,
+        command => "/bin/echo 'sun-java6-jdk shared/accepted-sun-dlj-v1-1 boolean true'|/usr/bin/debconf-set-selections",
     }
 }
