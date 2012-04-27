@@ -1,7 +1,7 @@
 # ESC 2012.04.27
-# operations for apt
+# operations for apt-get
 #------------------------------------------------------------------------------- 
 
-class apt {
-
+class apt::apt-get inherits apt {
+    
 }
