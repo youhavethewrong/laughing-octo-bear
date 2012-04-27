@@ -20,7 +20,7 @@ class java {
         mode    => 444,
         owner   => root,
         group   => root,
-        require => Class["apt-get::update"],
+        require => Class["apt::apt-get::update"],
     }
 
     # ensure latest sun-java6-jdk
