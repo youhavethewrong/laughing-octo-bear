@@ -2,8 +2,9 @@
 # puppet node specification
 
 node default {
-    include sshd
+    include python
     include ntp
+    include sshd
 }
 
 node /^www\d*\.*/ inherits default {
@@ -23,7 +24,7 @@ node /^db\d*\./ inherits default {
 }
 
 node /^app\d*\./ inherits default {
-    include python
+    include gcc
     include python::django
     include python::pip
 }
