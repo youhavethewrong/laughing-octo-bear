@@ -7,8 +7,6 @@ class java {
     # need the apt class so we can update apt's sources
     include apt
 
-    File['/etc/apt/sources.list.d/non-free.list'] ~> Package['sun-java6-jdk']
-
     # determine the right mirror to add for the OS
     $nf_mirror = $operatingsystem ? {
         'Debian' => "deb http://ftp.uwsg.indiana.edu/linux/debian/ ${lsbdistcodename} non-free",
@@ -22,14 +20,16 @@ class java {
         mode    => 444,
         owner   => root,
         group   => root,
-        require => Exec['apt-get_update','sun-java6-jdk-license-accept'],
+        notify  => Exec['apt-get_update','sun-java6-jdk-license-accept'],
     }
 
     # ensure latest sun-java6-jdk
     package { 'sun-java6-jdk':
-        ensure  => latest,
+        ensure    => latest,
+        subscribe => '/etc/apt/sources.list.d/non-free.list',
     } 
 
+    # auto-accept the weird oracle license
     exec { 'sun-java6-jdk-license-accept':
         command => "/bin/echo 'sun-java6-jdk shared/accepted-sun-dlj-v1-1 boolean true'|/usr/bin/debconf-set-selections",
         unless  => "/usr/bin/debconf-get-selections |grep sun-java6-jdk|grep accepted-sun-dlj",

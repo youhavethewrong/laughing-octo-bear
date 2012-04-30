@@ -10,8 +10,8 @@ class cassandra ($release = '11x') {
     # $release is the cassandra release noted here:
     # http://wiki.apache.org/cassandra/DebianPackaging
 
-    # file before package before service and notify down the chain
-    File['/etc/apt/sources.list.d/cassandra.list'] ~> Package['cassandra'] ~> Service['cassandra']
+    # manage package before service and notify service
+    Package['cassandra'] ~> Service['cassandra']
 
     # make sure apache GPG keys are installed
     apt::key { 'apache-cassandra-key': 
@@ -29,13 +29,15 @@ class cassandra ($release = '11x') {
     # add an apt mirror for cassandra packages
     # if this breaks, check http://wiki.apache.org/cassandra/DebianPackaging
     file { '/etc/apt/sources.list.d/cassandra.list':
-        ensure => present,
+        ensure  => present,
         content => $cass_mirror,
         mode    => 444,
         owner   => root,
         group   => root,
-        require => Exec['apt-get_update'],
+        notify  => Exec['apt-get_update'],
     }
+
+    # configuration file notifies
 
     # ensure latest cassandra is installed
     package { 'cassandra':
