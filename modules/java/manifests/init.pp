@@ -26,7 +26,7 @@ class java {
     # ensure latest sun-java6-jdk
     package { 'sun-java6-jdk':
         ensure    => latest,
-        subscribe => '/etc/apt/sources.list.d/non-free.list',
+        subscribe => File['/etc/apt/sources.list.d/non-free.list'],
     } 
 
     # auto-accept the weird oracle license
