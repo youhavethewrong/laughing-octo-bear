@@ -25,6 +25,7 @@ node /^db\d*\./ inherits default {
 
 node /^app\d*\./ inherits default {
     include gcc
+    include python::python-dev
     include python::django
     include python::pip
 }

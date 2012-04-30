@@ -6,3 +6,9 @@ class python {
         ensure => installed,
     }
 }
+
+class python::python-dev inherits python {
+    package { 'python-dev':
+        ensure => installed,
+    }
+}
