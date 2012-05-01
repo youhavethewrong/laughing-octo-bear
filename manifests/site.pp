@@ -12,7 +12,7 @@ node /^www\d*\.*/ inherits default {
 }
 
 node /^proxy\d*\./ inherits default {
-    include lighttpd
+    include haproxy
 }
 
 node /^dns\d*\./ inherits default {
