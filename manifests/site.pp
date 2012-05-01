@@ -13,6 +13,7 @@ node /^www\d*\.*/ inherits default {
 
 node /^proxy\d*\./ inherits default {
     include haproxy
+    include keepalived
 }
 
 node /^dns\d*\./ inherits default {
