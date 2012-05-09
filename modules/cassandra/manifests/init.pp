@@ -41,7 +41,7 @@ class cassandra ($release = '11x') {
 
     file { '/etc/cassandra/cassandra.yaml':
         ensure => present,
-        source => 'puppet:///modules/cassandra/files/cassandra.yaml',
+        source => 'puppet:///modules/cassandra/cassandra.yaml',
         mode   => 444,
         owner  => root,
         group  => root,
