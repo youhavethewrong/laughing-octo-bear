@@ -12,6 +12,7 @@ class cassandra ($release = '11x') {
 
     # manage package before service and notify service
     Package['cassandra'] ~> Service['cassandra']
+    File['/etc/cassandra/cassandra.yaml'] ~> Service['cassandra']
 
     # make sure apache GPG keys are installed
     apt::key { 'apache-cassandra-key': 
@@ -37,7 +38,15 @@ class cassandra ($release = '11x') {
         notify  => Exec['apt-get_update'],
     }
 
-    # configuration file notifies
+
+    file { '/etc/cassandra/cassandra.yaml':
+        ensure => present,
+        source => 'puppet:///modules/cassandra/files/cassandra.yaml',
+        mode   => 444,
+        owner  => root,
+        group  => root,
+        require => Package['cassandra'],
+    }
 
     # ensure latest cassandra is installed
     package { 'cassandra':
