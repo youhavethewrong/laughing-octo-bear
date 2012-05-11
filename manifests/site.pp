@@ -7,26 +7,30 @@ node default {
     include sshd
 }
 
-node /^www\d*\.*/ inherits default {
+node /^www\d+.*/ inherits default {
     include nginx
 }
 
-node /^proxy\d*\./ inherits default {
+node /^proxy\d+.*/ inherits default {
     include haproxy
     include keepalived
 }
 
-node /^dns\d*\./ inherits default {
+node /^dns\d+.*/ inherits default {
     include bind
 }
 
-node /^db\d*\./ inherits default {
+node /^db\d+.*/ inherits default {
     include cassandra
 }
 
-node /^app\d*\./ inherits default {
+node /^app\d+.*/ inherits default {
     include gcc
     include python::python-dev
     include python::django
     include python::pip
+}
+
+node /^storage\d+.*/ inherits default {
+    include glusterfs
 }
