@@ -5,16 +5,26 @@ class maven {
 
     include java
 
-    $pkg_name = $operatingsystem ? {
-        'Debian' => 'maven2',
-        'Ubuntu' => 'maven2',
-        default  => fail("OS ${operatingsystem} not supported by ${module_name} module."),
+    file { '/usr/local/apache-maven':
+        ensure => directory,
+        mode   => 755,
+        owner  => root,
+        group  => root,
     }
 
-    package { 'maven' :
-        ensure  => latest,
-        name    => $pkg_name,
-        require => Class['java'],
+    file { '/usr/local/apache-maven/apache-maven-3.0.4.tar.gz':
+        ensure => present,
+        source => 'puppet:///modules/maven/apache-maven-3.0.4.tar.gz',
+        mode   => 644,
+        owner  => root,
+        group  => root,
+        require => [File['/usr/local/apache-maven'],Package['java']],
+    }
+
+    exec { 'expand-apache-maven-3.0.4':
+        command => "/bin/tar xzvf /usr/local/apache-maven/apache-maven-3.0.4.tar.gz -C /usr/local/apache-maven",
+        unless  => "/usr/bin/test -d /usr/local/apache-maven/apache-maven-3.0.4",
+        require => File['/usr/local/apache-maven/apache-maven-3.0.4.tar.gz'],
     }
 
 }
