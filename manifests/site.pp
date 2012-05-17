@@ -3,6 +3,7 @@
 
 node default {
     include python
+    include negated
     include ntp
     include sshd
 }

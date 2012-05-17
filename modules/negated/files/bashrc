@@ -1,0 +1,33 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+
+PS1='(\A)[\u:\h] \w $ '
+
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
+alias ls='ls -F'
+alias vi='vim'
+alias f='fortune'
+alias ssh='ssh -o VisualHostKey=yes'
+alias lll='xscreensaver-command -lock'
+
+# umask
+umask 022
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+
+export CVSROOT=/home/cvs
+export CVSEDITOR=vim
+export EDITOR=vim
+export M2_HOME=/usr/local/apache-maven/apache-maven-3.0.4
+export M2=$M2_HOME/bin
+export MAVEN_OPTS="-Xms256m -Xmx512m"
+export JAVA_HOME=/usr/lib/jvm/java-6-sun-1.6.0.26/jre
+export PATH=/home/negated/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/pkg/bin:/usr/pkg/sbin:/usr/games:/usr/local/bin:/usr/local/sbin:$M2:$JAVA_HOME/bin
