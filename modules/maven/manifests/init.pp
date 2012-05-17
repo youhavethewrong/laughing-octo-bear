@@ -18,7 +18,7 @@ class maven {
         mode   => 644,
         owner  => root,
         group  => root,
-        require => [File['/usr/local/apache-maven'],Package['java']],
+        require => [File['/usr/local/apache-maven'],Class['java']],
     }
 
     exec { 'expand-apache-maven-3.0.4':
