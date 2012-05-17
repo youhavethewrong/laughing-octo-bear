@@ -15,7 +15,7 @@ class android {
     }
 
     exec { 'expand-android-sdk_r18':
-        command => "/bin/tar xzvf /usr/local/android-sdk_r18-linux.tgz -C /usr/local && chown -R root: /usr/local/android-sdk-linux",
+        command => "/bin/tar xzvf --no-same-permissions --no-same-owner /usr/local/android-sdk_r18-linux.tgz -C /usr/local",
         unless  => "/usr/bin/test -d /usr/local/android-sdk-linux",
         require => File['/usr/local/android-sdk_r18-linux.tgz'],
     }
