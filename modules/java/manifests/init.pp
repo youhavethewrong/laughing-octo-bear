@@ -20,13 +20,14 @@ class java {
         mode    => 444,
         owner   => root,
         group   => root,
-        notify  => Exec['apt-get_update','sun-java6-jdk-license-accept'],
+        notify  => Exec['apt-get_update'],
     }
 
     # ensure latest sun-java6-jdk
     package { 'sun-java6-jdk':
         ensure    => latest,
         subscribe => File['/etc/apt/sources.list.d/non-free.list'],
+        require   => Exec['sun-java6-jdk-license-accept'],
     } 
 
     # auto-accept the weird oracle license
