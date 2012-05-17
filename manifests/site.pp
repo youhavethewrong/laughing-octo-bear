@@ -16,6 +16,7 @@ node /^app\d+.*/ inherits default {
 }
 
 node /^build\d+.*/ inherits default {
+    include android
     include maven
 }
 
