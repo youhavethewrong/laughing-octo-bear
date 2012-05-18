@@ -23,6 +23,7 @@ class android {
     exec { 'update-android-sdk_r18':
         command => "/usr/local/android-sdk-linux/tools/android update sdk -u -a",
         unless  => "/usr/bin/test -d /usr/local/android-sdk-linux/platforms/android-10",
+        timeout  => 600,
         require => Exec['expand-android-sdk_r18'],
     }
  
